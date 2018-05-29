@@ -16,6 +16,20 @@ lazy val pamina = project.in(file("."))
 	.settings(
 		name := "pamina"
 	)
+	.aggregate(
+		article
+	)
+
+lazy val article = project.in(file("article"))
+	.settings(settings)
+	.settings(
+		name := "pamina-article"
+		, libraryDependencies ++= Seq(
+
+			// test
+			lib.scalaTest
+		)
+	)
 
 lazy val lib = new {
 	object Version {
