@@ -17,7 +17,19 @@ lazy val pamina = project.in(file("."))
 		name := "pamina"
 	)
 	.aggregate(
-		article
+		api
+		, article
+	)
+
+lazy val api = project.in(file("api"))
+	.settings(settings)
+	.settings(
+		name := "pamina-api"
+		, libraryDependencies ++= Seq(
+
+			// test
+			lib.scalaTest
+		)
 	)
 
 lazy val article = project.in(file("article"))
@@ -29,6 +41,9 @@ lazy val article = project.in(file("article"))
 			// test
 			lib.scalaTest
 		)
+	)
+  .dependsOn(
+		api
 	)
 
 lazy val lib = new {
